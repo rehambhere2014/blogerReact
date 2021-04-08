@@ -15,6 +15,7 @@ import { StateContext } from "./redux/context/StateContext"
 import { DispatchContext } from "./redux/context/DispatchContext"
 import Profile from "./components/profile/Profile"
 import Post from "./components/profile/Post"
+import FlashMessage from "./utilits/AlertComponents/FlashMessage"
 
 axios.defaults.baseURL = "http://localhost:8089/"
 
@@ -31,31 +32,36 @@ export default function App() {
       localStorage.removeItem("avatar")
     }
   }, [state.isLogin])
+
   return (
     <>
       <StateContext.Provider value={state}>
         <DispatchContext.Provider value={dispatch}>
           <BrowserRouter>
+            <FlashMessage />
+
             <Header />
             <Switch>
-              <Route path="/" exact>
-                {state.isLogin ? <Home /> : <HomeGuest />}
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/signup">
-                <SignUp />
-              </Route>
-              <Route path="/create-post">
-                <CreatePost />
-              </Route>
-              <Route path="/profile/:username">
-                <Profile />
-              </Route>
-              <Route path="/post/:id">
-                <Post />
-              </Route>
+              <div className="content">
+                <Route path="/" exact>
+                  {state.isLogin ? <Home /> : <HomeGuest />}
+                </Route>
+                <Route path="/login">
+                  <Login />
+                </Route>
+                <Route path="/signup">
+                  <SignUp />
+                </Route>
+                <Route path="/create-post">
+                  <CreatePost />
+                </Route>
+                <Route path="/profile/:username">
+                  <Profile />
+                </Route>
+                <Route path="/post/:id">
+                  <Post />
+                </Route>
+              </div>
             </Switch>
             <Footer />
           </BrowserRouter>

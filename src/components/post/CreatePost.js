@@ -2,12 +2,15 @@ import axios from "axios"
 import React, { useState, useContext } from "react"
 import { withRouter } from "react-router"
 import { StateContext } from "../../redux/context/StateContext"
+import { DispatchContext } from "../../redux/context/DispatchContext"
 import { Form, FormBox, Heading, Label, FormInput, FormSection, Button, InputSection, TextArea } from "./createStyle"
+import { FlashMessage } from "../../redux/action"
 
 function CreatePost(props) {
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
   let appState = useContext(StateContext)
+  let appDispath = useContext(DispatchContext)
   async function handleSubmit(e) {
     e.preventDefault()
     try {
@@ -15,6 +18,7 @@ function CreatePost(props) {
       console.log(res.data)
       if (title && body) {
         props.history.push(`/post/${res.data}`)
+        appDispath(FlashMessage)
       } else {
         alert("please but data")
       }

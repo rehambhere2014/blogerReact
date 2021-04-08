@@ -1,14 +1,14 @@
 import React, { useContext } from "react"
 import { Link, withRouter } from "react-router-dom"
 import { Button, ImageProfile, LinkItem, LinkItemProfile, NavbarButton, Wrapper } from "./headerstyle"
-import { LogonContext } from "../../redux/context/LogonContext"
 import { DispatchContext } from "../../redux/context/DispatchContext"
 import { StateContext } from "../../redux/context/StateContext"
-function HeaderLogin(props) {
+import { LogoutAction } from "../../redux/action"
+function HeaderLogin() {
   let appDispatch = useContext(DispatchContext)
   let appState = useContext(StateContext)
-  const handleremoveLocalstorge = () => {
-    appDispatch({ type: "LOGOUT" })
+  function handleremoveLocalstorge() {
+    appDispatch(LogoutAction())
   }
   return (
     <Wrapper>

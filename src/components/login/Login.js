@@ -4,6 +4,7 @@ import axios from "axios"
 import { withRouter } from "react-router"
 import { Form, FormBox, Heading, Label, LinkItem, Text, FormInput, Image, FormLogo, Paragraph, FormSection, Button, InputSection } from "./loginStyle"
 import { DispatchContext } from "../../redux/context/DispatchContext"
+import { LoginAction, LogoutAction } from "../../redux/action"
 function Login(props) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -15,7 +16,7 @@ function Login(props) {
       if (res.data) {
         console.log(res.data)
 
-        appDispatch({ type: "LOGIN", data: res.data })
+        appDispatch(LoginAction(res.data))
 
         props.history.push("/")
       } else {

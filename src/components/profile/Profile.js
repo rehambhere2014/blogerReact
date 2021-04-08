@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useContext, useState } from "react"
 import { useParams } from "react-router"
 import { StateContext } from "../../redux/context/StateContext"
+import Loading from "../../utilits/LoadingComponent/Loading"
 import PostList from "./PostList"
 import { ProfileBox, Wrapper, ImageProfile, ProfileHeader, ButtonProfile, ProfileNav, ProfileLink, ProfileList, ProfileListItem } from "./ProfileStyle"
 
@@ -18,14 +19,14 @@ export default function Profile() {
 
     isFollowing: false,
     profileAvatar: "",
-    profileUsername: "",
+    profileUsername: "...",
   })
 
   useEffect(() => {
     async function fetchPosts() {
       try {
         let res = await axios.post(`/profile/${username}`, { token: appState.user.token })
-        console.log(res.data)
+
         setProfileData(res.data)
         setLoading(false)
       } catch (err) {
@@ -36,7 +37,11 @@ export default function Profile() {
   }, [])
 
   if (loading) {
-    return <h1>Loading....</h1>
+    return (
+      <Wrapper>
+        <Loading />
+      </Wrapper>
+    )
   }
   return (
     <Wrapper>
@@ -47,11 +52,13 @@ export default function Profile() {
             <ButtonProfile>follow +</ButtonProfile>
           </ProfileHeader>
           <ProfileNav>
-            <ProfileLink active={true}>Posts: {profileData.counts.postCount}</ProfileLink>
+            <ProfileLink active="true" to="">
+              Posts: {profileData.counts.postCount}
+            </ProfileLink>
 
-            <ProfileLink> Followers: {profileData.counts.followingCount} </ProfileLink>
+            <ProfileLink to=""> Followers: {profileData.counts.followingCount} </ProfileLink>
 
-            <ProfileLink> Following: {profileData.counts.followerCount}</ProfileLink>
+            <ProfileLink to=""> Following: {profileData.counts.followerCount}</ProfileLink>
           </ProfileNav>
           <PostList />
         </ProfileBox>

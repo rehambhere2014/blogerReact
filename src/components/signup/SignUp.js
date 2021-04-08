@@ -10,8 +10,7 @@ function SignUp(props) {
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      let res = await axios.post("register", { username, email, password })
-      console.log(res.data)
+      await axios.post("register", { username, email, password })
       props.history.push("/login")
     } catch (err) {
       console.log(err)

@@ -11,15 +11,18 @@ export default function Post(props) {
     async function fetchPost() {
       try {
         let res = await axios.get(`/post/${id}`)
-        console.log(res.data)
         setPost(res.data)
         setLoading(false)
       } catch (err) {
-        console.log("err")
+        console.log("ther is proplem")
       }
     }
+
     fetchPost()
   }, [])
+  if (loading) {
+    return <h1>loading .........</h1>
+  }
   let date = new Date(post.createdDate)
 
   const formatdata = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`

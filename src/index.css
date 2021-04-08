@@ -59,4 +59,8 @@ body {
   font-family: "Sporting Grotesque";
   background: var(--body-color-v1);
   overflow-x: hidden;
+  min-height: 600px;
+}
+.content {
+  min-height: 600px;
 }

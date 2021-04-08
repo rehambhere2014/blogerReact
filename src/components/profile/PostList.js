@@ -3,22 +3,28 @@ import React, { useState, useEffect } from "react"
 import { ProfileBox, Wrapper, ImageProfile, ProfileHeader, ButtonProfile, ProfileNav, ProfileLink, ProfileList, ProfileListItem, DateSpan } from "./ProfileStyle"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom"
+import Loading from "../../utilits/LoadingComponent/Loading"
 
 export default function PostList() {
   let { username } = useParams()
   let [posts, setPosts] = useState([])
+  let [loading, setLoading] = useState(true)
+
   useEffect(() => {
     async function fetchPost() {
       try {
         let res = await axios.get(`/profile/${username}/posts`)
-        console.log(res.data)
         setPosts(res.data)
+        setLoading(false)
       } catch (err) {
         console.log(err)
       }
     }
     fetchPost()
   }, [])
+  if (loading) {
+    return <Loading />
+  }
   return (
     <ProfileList>
       {posts.map((item) => {
