@@ -28,7 +28,7 @@ export const NavbarLogo = styled(Link)`
   display: flex;
   align-items: center;
   line-height: 1;
-  background-image: url("./images/logo.svg");
+  background-image: url(${(props) => props.bg});
   font-size: 18px;
   color: var(--main-color);
   font-weight: normal;

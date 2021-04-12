@@ -12,6 +12,7 @@ export default function Header(props) {
       <div className="container">
         <Navabar>
           <HeaderLogo>
+            {/* <img src="./images/logo.svg" /> */}
             <NavbarLogo to="/">Writescape</NavbarLogo>
           </HeaderLogo>
 

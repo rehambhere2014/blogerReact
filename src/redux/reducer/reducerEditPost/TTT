@@ -1,0 +1,29 @@
+import { CHANGEBODY, CHANGETITLE, EDIT, FETCHCOMPLEATE, SAVEREQUESTEND, SAVEREQUESTSTART } from "../../action/type"
+
+export const reducer = (draft, action) => {
+  switch (action.type) {
+    case FETCHCOMPLEATE:
+      draft.title.value = action.value.title
+      draft.isFeatching = false
+      draft.body.value = action.value.body
+      return
+    case CHANGETITLE:
+      draft.title.value = action.value
+      return
+    case CHANGEBODY:
+      draft.body.value = action.value
+      return
+
+    case EDIT:
+      draft.sendCount++
+      return
+    case SAVEREQUESTSTART:
+      draft.isSaving = true
+      return
+    case SAVEREQUESTEND:
+      draft.isSaving = false
+      return
+    default:
+      return draft
+  }
+}

@@ -64,3 +64,9 @@ body {
 .content {
   min-height: 600px;
 }
+
+.container-content {
+  padding: var(--pading-top) 0 5rem 0;
+  max-width: 732px;
+  margin: auto;
+}

@@ -1,9 +1,7 @@
 import React, { useContext } from "react"
 import { StateContext } from "../../redux/context/StateContext"
 import "./flassMessageStyle.css"
-export default function FlashMessage({ message }) {
-  const { flassMessage } = useContext(StateContext)
-  console.log(flassMessage)
+export default function FlashMessage({ flassMessage }) {
   return (
     <div className="floating-alerts">
       {" "}

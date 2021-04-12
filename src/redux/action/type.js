@@ -1,3 +1,12 @@
 export const MESSAGE = "MESSAGE"
 export const LOGOUT = "LOGOUT"
 export const LOGIN = "LOGIN"
+export const FETCHCOMPLEATE = "FETCHCOMPLEATE"
+export const CHANGETITLE = "CHANGETITLE"
+export const CHANGEBODY = "CHANGEBODY"
+export const EDIT = "EDIT"
+export const SAVEREQUESTSTART = "SAVEREQUESTSTART"
+
+export const SAVEREQUESTEND = "SAVEREQUESTEND"
+export const TITLEROULS = "TITLEROULS"
+export const BODYROULS = "BODYROULS"

@@ -23,9 +23,11 @@ export default function Profile() {
   })
 
   useEffect(() => {
+    let ourRequest = axios.CancelToken.source()
+
     async function fetchPosts() {
       try {
-        let res = await axios.post(`/profile/${username}`, { token: appState.user.token })
+        let res = await axios.post(`/profile/${username}`, { token: appState.user.token, cancleToken: ourRequest.token })
 
         setProfileData(res.data)
         setLoading(false)
@@ -34,6 +36,7 @@ export default function Profile() {
       }
     }
     fetchPosts()
+    return () => ourRequest.cancel()
   }, [])
 
   if (loading) {
@@ -52,13 +55,11 @@ export default function Profile() {
             <ButtonProfile>follow +</ButtonProfile>
           </ProfileHeader>
           <ProfileNav>
-            <ProfileLink active="true" to="">
-              Posts: {profileData.counts.postCount}
-            </ProfileLink>
+            <ProfileLink to="/">Posts: {profileData.counts.postCount}</ProfileLink>
 
-            <ProfileLink to=""> Followers: {profileData.counts.followingCount} </ProfileLink>
+            <ProfileLink to="/"> Followers: {profileData.counts.followingCount} </ProfileLink>
 
-            <ProfileLink to=""> Following: {profileData.counts.followerCount}</ProfileLink>
+            <ProfileLink to="/"> Following: {profileData.counts.followerCount}</ProfileLink>
           </ProfileNav>
           <PostList />
         </ProfileBox>

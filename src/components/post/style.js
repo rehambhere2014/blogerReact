@@ -51,7 +51,7 @@ export const InputSection = styled.input`
     border-radius: none;
   }
   @media ${device.mobileM} {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
   }
 `
 export const Button = styled.button`
@@ -67,6 +67,16 @@ export const Button = styled.button`
   @media ${device.mobileM} {
     font-size: 20px;
   }
+  &:disabled {
+    background: #dddddd;
+    cursor: not-allowed;
+  }
+`
+
+export const Small = styled.small`
+  display: block;
+  color: red;
+  font-size: 10px;
 `
 
 export const TextArea = styled.textarea`

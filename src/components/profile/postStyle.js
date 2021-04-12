@@ -19,7 +19,12 @@ export const ImagePost = styled.img`
   top: -3px;
 `
 
-export const PostHeader = styled.div``
+export const PostHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+`
 
 export const PostInfo = styled.div`
   margin-top: 20px;
